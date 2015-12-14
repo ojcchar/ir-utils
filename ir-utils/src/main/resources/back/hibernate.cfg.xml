@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.password">rootroot</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+        <mapping class="seers.irutils.entity.BugAndFiles" />
+        <mapping class="seers.irutils.entity.FileHistory" />
+        <mapping class="seers.irutils.entity.BugCommit" />
+        
+	    <mapping class="seers.irda.entity.IrRelevanceJudgement" />
+        <mapping class="seers.irda.entity.Issue" />
+        <mapping class="seers.irda.entity.Revision" />
+        <mapping class="seers.irda.entity.SoftwareSystem" />
+        <mapping class="seers.irda.entity.IrDocument" />
+        <mapping class="seers.irda.entity.IrQuery" />
+        <mapping class="seers.irda.entity.ChangeSet" />
+    </session-factory>
+</hibernate-configuration>
