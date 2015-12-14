@@ -28,7 +28,7 @@ public class MainPOSCode {
 
 	public static void main(String[] args) throws Exception {
 		inFolder = args[0];
-		sourceSubFolders = args[1].split(";");
+		sourceSubFolders = args[1].split(",");
 		projectFolderName = args[2];
 		String stopWordsFile = args[3];
 		String projectSysName = args[4];
