@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import ch.usi.inf.reveal.parsing.stormed.service.StormedClientJavaExample;
 import edu.wayne.cs.severe.ir4se.processor.entity.Query;
 import edu.wayne.cs.severe.ir4se.processor.utils.ParameterUtils;
@@ -14,6 +17,7 @@ import seers.utils.pos.MainBugPOSTagger;
 
 public class MainIslandParsingQueries {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(MainIslandParsingQueries.class);
 	private static String outFolder;
 
 	public static void main(String[] args) throws Exception {
@@ -52,18 +56,41 @@ public class MainIslandParsingQueries {
 	}
 
 	static void processIssue(String sys, CsvIssue csvIssue, String outBaseFolder, String fileSuffix) throws Exception {
-		String summary = csvIssue.summary;
-		String description = csvIssue.description;
+		String isolatedSummary = csvIssue.summary;
+		try {
+			isolatedSummary = MainIslandParsingQueries.isolateText(csvIssue.summary);
+		} catch (Exception e) {
+			LOGGER.error("Error for issue - summary: " + csvIssue.key + ", [" + sys + "]", e);
+		}
 
-		String text = summary + ". " + description;
+		String isolatedDescription = csvIssue.description;
+		try {
+			isolatedDescription = MainIslandParsingQueries.isolateText(csvIssue.description);
+		} catch (Exception e) {
+			LOGGER.error("Error for issue - description: " + csvIssue.key + ", [" + sys + "]", e);
+		}
 
-		String isolated = isolateText(text);
-
-		File file = new File(getFileName(sys, outBaseFolder, fileSuffix));
-		String line = "\"" + csvIssue.key + "\";\"" + isolated + "\"\r\n";
+		File file = new File(MainIslandParsingQueries.getFileName(sys, outBaseFolder, fileSuffix));
+		String allText = (isolatedSummary == null ? "" : isolatedSummary) + ". "
+				+ (isolatedDescription == null ? "" : isolatedDescription);
+		String line = "\"" + csvIssue.key + "\";\"" + allText + "\"\r\n";
 		org.apache.commons.io.FileUtils.write(file, line, true);
-
 	}
+
+	// static void processIssue(String sys, CsvIssue csvIssue, String
+	// outBaseFolder, String fileSuffix) throws Exception {
+	// String summary = csvIssue.summary;
+	// String description = csvIssue.description;
+	//
+	// String text = summary + ". " + description;
+	//
+	// String isolated = isolateText(text);
+	//
+	// File file = new File(getFileName(sys, outBaseFolder, fileSuffix));
+	// String line = "\"" + csvIssue.key + "\";\"" + isolated + "\"\r\n";
+	// org.apache.commons.io.FileUtils.write(file, line, true);
+	//
+	// }
 
 	static String isolateText(String text) {
 
