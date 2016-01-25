@@ -43,12 +43,12 @@ public class PaginatedSysBugIslandProcessor implements ThreadProcessor {
 		try {
 			LOGGER.debug("Processing " + sys);
 
-			params.put(ParameterUtils.SYSTEM, sys);
+			// params.put(ParameterUtils.SYSTEM, sys);
 
 			File file = new File(MainIslandParsingQueries.getFileName(sys, outFolder, fileSuffix));
 			file.delete();
 
-			String path = ParameterUtils.getQueriesFileInfoPath(params);
+			String path = params.get(ParameterUtils.BASE_DIR) + File.separator + sys + "_Queries_info.txt";
 			// LOGGER.debug("file " + path);
 
 			List<CsvIssue> qInfo = MainBugPOSTagger.readIssues(path, false);
