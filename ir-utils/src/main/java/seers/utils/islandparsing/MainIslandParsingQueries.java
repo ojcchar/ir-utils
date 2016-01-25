@@ -8,11 +8,11 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ch.usi.inf.reveal.parsing.stormed.service.StormedClientJavaExample;
 import edu.wayne.cs.severe.ir4se.processor.entity.Query;
 import edu.wayne.cs.severe.ir4se.processor.utils.ParameterUtils;
 import seers.irutils.CsvIssue;
 import seers.irutils.LegacyDataParser;
+import seers.stormedclient.StormedClient;
 import seers.utils.pos.MainBugPOSTagger;
 
 public class MainIslandParsingQueries {
@@ -100,7 +100,7 @@ public class MainIslandParsingQueries {
 
 		// *************************************
 		String noCodeTxt = deleteNewLinesAndTags(text);
-		String isolated = StormedClientJavaExample.isolateText(noCodeTxt);
+		String isolated = StormedClient.isolateText(noCodeTxt);
 		isolated = isolated.replace("\r\n", "\\\\r\\\\n").replace("\n\r", "\\\\n\\\\r");
 		isolated = isolated.replace("\"", "\\\"");
 		return isolated;

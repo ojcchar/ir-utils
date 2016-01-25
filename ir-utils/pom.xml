@@ -79,14 +79,7 @@
 		<dependency>
 			<groupId>ch.usi.inf.reveal.parsing</groupId>
 			<artifactId>stormed-devkit</artifactId>
-			<version>1.9.0</version>
-		</dependency>
-		<dependency>
-			<groupId>ch.usi.inf.reveal.parsing</groupId>
-			<artifactId>stormed-client</artifactId>
-			<version>1.1</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/lib/stormed-client-1.1.jar</systemPath>
+			<version>1.9.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse</groupId>
@@ -200,6 +193,11 @@
 			<groupId>seers</groupId>
 			<artifactId>code-parser</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>seers</groupId>
+			<artifactId>stormed-client</artifactId>
+			<version>1.2</version>
 		</dependency>
 		<dependency>
 			<groupId>seers</groupId>

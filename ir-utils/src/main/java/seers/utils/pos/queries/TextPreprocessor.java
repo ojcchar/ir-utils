@@ -19,8 +19,10 @@ import edu.stanford.nlp.util.CoreMap;
 
 public class TextPreprocessor {
 
-	static StanfordCoreNLP pipeline;
+	private static StanfordCoreNLP pipeline;
 	private static StanfordCoreNLP pipelineLemma;
+
+	private static final String[] PARENTHESIS = { "-LCB-", "-RCB-", "-LRB-", "-RRB-", "-LSB-", "-RSB-" };
 
 	static {
 		Properties props = new Properties();
@@ -105,7 +107,7 @@ public class TextPreprocessor {
 		return validTokens;
 	}
 
-	public static List<String> tokenizeWithLemma(String text) {
+	public static List<String> tokenizeToLemma(String text) {
 		Annotation document = new Annotation(text);
 		pipelineLemma.annotate(document);
 
@@ -121,8 +123,6 @@ public class TextPreprocessor {
 
 		return tokens;
 	}
-
-	static String[] PARENTHESIS = { "-LCB-", "-RCB-", "-LRB-", "-RRB-", "-LSB-", "-RSB-" };
 
 	public static List<String> removePunctuation(List<String> tokens) {
 		List<String> validTokens = new ArrayList<>();
