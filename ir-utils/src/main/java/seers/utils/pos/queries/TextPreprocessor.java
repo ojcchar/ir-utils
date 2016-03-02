@@ -71,7 +71,7 @@ public class TextPreprocessor {
 		return validTokens;
 	}
 
-	public static List<String> breakIdentifiers(List<String> tokens) {
+	public static List<String> splitIdentifiers(List<String> tokens) {
 		List<String> validTokens = new ArrayList<>();
 		for (String token : tokens) {
 			String[] tokenSplit = StringUtils.splitByCharacterTypeCamelCase(token);

@@ -247,7 +247,7 @@ public class MainPOSQueries {
 		tokensPrep = TextPreprocessor.removeStopWords(tokensPrep, stopWords);
 		tokensPrep = TextPreprocessor.removePunctuation(tokensPrep);
 		tokensPrep = TextPreprocessor.removeNonLiterals(tokensPrep);
-		tokensPrep = TextPreprocessor.breakIdentifiers(tokensPrep);
+		tokensPrep = TextPreprocessor.splitIdentifiers(tokensPrep);
 		tokensPrep = TextPreprocessor.removeIntegers(tokensPrep);
 		tokensPrep = TextPreprocessor.removeBlanks(tokensPrep);
 		tokensPrep = TextPreprocessor.removeShortTokens(tokensPrep, 2);

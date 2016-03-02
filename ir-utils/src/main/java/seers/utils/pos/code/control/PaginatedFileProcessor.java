@@ -172,7 +172,7 @@ public class PaginatedFileProcessor implements ThreadProcessor {
 		List<String> tokensPrep = TextPreprocessor.removeStopWords(tokens, stopWords);
 		tokensPrep = TextPreprocessor.removePunctuation(tokensPrep);
 		tokensPrep = TextPreprocessor.removeNonLiterals(tokensPrep);
-		tokensPrep = TextPreprocessor.breakIdentifiers(tokensPrep);
+		tokensPrep = TextPreprocessor.splitIdentifiers(tokensPrep);
 		tokensPrep = TextPreprocessor.removeStopWords(tokensPrep, stopWords);
 		tokensPrep = TextPreprocessor.removeIntegers(tokensPrep);
 		tokensPrep = TextPreprocessor.removeBlanks(tokensPrep);
